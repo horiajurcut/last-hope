@@ -5,34 +5,71 @@ namespace VREngine.Core
 {
     public class VRInteractiveItem : MonoBehaviour
     {
-        internal void Out()
+        public event Action OnOver;        // Called when the gaze moves over this object.
+        public event Action OnOut;         // Called when the gaze leaves this object.
+        public event Action OnClick;       // Called when click input is detected while the gaze is over this object.
+        public event Action OnDoubleClick; // Called when double click input is detected while the gaze is over the object.
+        public event Action OnUp;          // Called when Fire1 is released whilst the gaze is over this object.
+        public event Action OnDown;        // Called when Fire1 is pressed whilst the gaze is over this object.
+
+        protected bool m_IsOver;
+
+        public bool IsOver
         {
-            throw new NotImplementedException();
+            get { return m_IsOver; } // Is the gaze currently over this object?
         }
 
-        internal void Down()
+        // The below methods are called by VREyeRayCaster when the appropriate input is detected.
+        public void Out()
         {
-            throw new NotImplementedException();
+            m_IsOver = false;
+
+            if (OnOut != null)
+            {
+                OnOut();
+            }
         }
 
-        internal void Up()
+        public void Down()
         {
-            throw new NotImplementedException();
+           if (OnDown != null)
+            {
+                OnDown();
+            }
         }
 
-        internal void Click()
+        public void Up()
         {
-            throw new NotImplementedException();
+            if (OnUp != null)
+            {
+                OnUp();
+            }
         }
 
-        internal void DoubleClick()
+        public void Click()
         {
-            throw new NotImplementedException();
+            if (OnClick != null)
+            {
+                OnClick();
+            }
         }
 
-        internal void Over()
+        public void DoubleClick()
         {
-            throw new NotImplementedException();
+            if (OnDoubleClick != null)
+            {
+                OnDoubleClick();
+            }
+        }
+
+        public void Over()
+        {
+            m_IsOver = true;
+
+            if (OnOver != null)
+            {
+                OnOver();
+            }
         }
     }
 }
