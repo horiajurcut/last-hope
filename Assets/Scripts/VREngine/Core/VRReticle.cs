@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace VREngine.Core
 {
-    public class Reticle : MonoBehaviour
+    public class VRReticle : MonoBehaviour
     {
         [SerializeField]
         private float m_DefaultDistance = 5f; // The default distance away from the camera.

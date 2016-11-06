@@ -14,7 +14,7 @@ namespace VREngine.Core
         private LayerMask m_ExclusionLayers;
 
         [SerializeField]
-        private Reticle m_Reticle; // The reticle, if applicable.
+        private VRReticle m_Reticle; // The reticle, if applicable.
 
         [SerializeField]
         private VRInput m_VrInput; // Call input based events on the current VRInteractiveItem.
