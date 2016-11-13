@@ -2,7 +2,7 @@
 using System.Collections;
 using VREngine.Core;
 
-namespace VREngine.Utils
+namespace VREngine.Shooter
 {
     public class TargetInteractible : MonoBehaviour
     {

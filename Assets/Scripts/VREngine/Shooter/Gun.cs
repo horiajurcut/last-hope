@@ -19,6 +19,9 @@ namespace VREngine.Shooter
         private float m_GunFlareVisibleSeconds = 0.07f;  // How long the line renederer and flare are visible for each shot.
 
         [SerializeField]
+        private VREyeRayCaster m_EyeRayCaster;
+
+        [SerializeField]
         private VRReticle m_Reticle;                     // What the gun arm should be aiming at.
 
         [SerializeField]
@@ -50,7 +53,12 @@ namespace VREngine.Shooter
 
         private void HandleDown()
         {
-            StartCoroutine(Fire(null));
+            TargetInteractible targetInteractible = m_EyeRayCaster.CurrentInteractible ? 
+                m_EyeRayCaster.CurrentInteractible.GetComponent<TargetInteractible>() : null;
+
+            Transform target = targetInteractible ? targetInteractible.transform : null;
+
+            StartCoroutine(Fire(target));
         }
 
         void Update()
